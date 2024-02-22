@@ -4,24 +4,37 @@
       Homepage
       <button @click="() => openHelpModal()">Open modal</button>
     </section>
-    <PhotoPreview size="large" photo="https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666206241_12-mykaleidoscope-ru-p-kartinka-na-zastavku-oboi-12.jpg" />
+
+    <EducationForm :education="education" />
   </PageLayout>
 </template>
 
 <script>
 import PageLayout from '../parts/PageLayout'
 import { helpModal } from "@/mixins/modals";
-import PhotoPreview from '../ui/PhotoPreview.vue';
+import EducationForm from '../forms/EducationForm.vue';
 
 export default {
   name: 'HomePage',
   mixins: [helpModal],
   components: {
     PageLayout,
-    PhotoPreview
+    EducationForm
+  },
+  data () {
+    return {
+      education: {
+        type: 'Бакалавриат',
+        level: 'Высшее',
+        startDate: '01.09.2019',
+        endDate: '31.08.2023',
+        institutionName: 'ВГУ',
+        institutionCity: ''
+      }
+    }
   }
 }
 </script>
 
-<style>
+<style scoped>
 </style>
