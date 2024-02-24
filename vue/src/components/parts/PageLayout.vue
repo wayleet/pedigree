@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="content">
+    <div class="container">
       <slot />
     </div>
   </div>
@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-.content {
+.container {
   margin: 0 auto;
   padding: 20px 34px;
   min-height: 100vh;

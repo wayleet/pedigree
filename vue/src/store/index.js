@@ -1,4 +1,5 @@
 import modals from './modals'
+import users from './users'
 
 export default {
   namespaced: true,
@@ -6,6 +7,7 @@ export default {
   getters: {},
   mutations: {},
   modules: {
-    modals
+    modals,
+    users
   }
 }
