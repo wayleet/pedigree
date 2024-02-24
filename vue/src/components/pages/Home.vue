@@ -7,6 +7,7 @@
     </section>
     <PhotoPreview size="large" photo="https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666206241_12-mykaleidoscope-ru-p-kartinka-na-zastavku-oboi-12.jpg" />
     <EducationForm :education="education" />
+    <WeddingForm :wedding="wedding" />
   </PageLayout>
 </template>
 
@@ -16,8 +17,7 @@ import { helpModal } from "@/mixins/modals";
 import PersonCard from '@/components/cards/PersonCard.vue';
 import PhotoPreview from '../ui/PhotoPreview.vue';
 import EducationForm from '../forms/EducationForm.vue';
-
-
+import WeddingForm from '../forms/WeddingForm.vue';
 
 export default {
   name: 'HomePage',
@@ -29,7 +29,7 @@ export default {
     EducationForm
     
   },
-  data() {
+  data () {
     return {
       person: {
         id: 'gi6437tf63i4ftfo43f',
@@ -44,6 +44,15 @@ export default {
         activity: 'Бухгалтер',
         photo: '/pictures/ivan.jpg'
       },
+      wedding: {
+        partner: {
+          id: '1',
+          name: 'Ivan',
+          second_name: 'Ivanov'
+        },
+        date_start: '01.01.2024',
+        date_end: '01.02.2024'
+      },
       education: {
         type: 'Бакалавриат',
         level: 'Высшее',
@@ -53,6 +62,10 @@ export default {
         institutionCity: ''
       }
     };
+    },
+  components: {
+    PageLayout,
+    WeddingForm,
   }
 }
 </script>
