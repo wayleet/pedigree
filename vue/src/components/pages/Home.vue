@@ -13,11 +13,11 @@
 
 <script>
 import PageLayout from '../parts/PageLayout'
-import { helpModal } from "@/mixins/modals";
-import PersonCard from '@/components/cards/PersonCard.vue';
-import PhotoPreview from '../ui/PhotoPreview.vue';
-import EducationForm from '../forms/EducationForm.vue';
-import WeddingForm from '../forms/WeddingForm.vue';
+import { helpModal } from "@/mixins/modals"
+import PersonCard from '@/components/cards/PersonCard.vue'
+import PhotoPreview from '../ui/PhotoPreview.vue'
+import EducationForm from '../forms/EducationForm.vue'
+import WeddingForm from '../forms/WeddingForm.vue'
 
 export default {
   name: 'HomePage',
