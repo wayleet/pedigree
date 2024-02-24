@@ -26,8 +26,8 @@ export default {
     PageLayout,
     PhotoPreview,
     PersonCard,
-    EducationForm
-    
+    EducationForm,
+    WeddingForm,
   },
   data () {
     return {
@@ -39,7 +39,7 @@ export default {
         birth_date: '01.01.2000',
         die_date: '',
         gender: 'male',
-        children: ['y3g46yf34fy636b','3345fg35yg34f3f46'],
+        children: ['y3g46yf34fy636b', '3345fg35yg34f3f46'],
         biography: 'Родился в ...',
         activity: 'Бухгалтер',
         photo: '/pictures/ivan.jpg'
@@ -61,11 +61,7 @@ export default {
         institutionName: 'ВГУ',
         institutionCity: ''
       }
-    };
-    },
-  components: {
-    PageLayout,
-    WeddingForm,
+    }
   }
 }
 </script>
