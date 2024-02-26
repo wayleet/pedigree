@@ -74,7 +74,6 @@ export default {
 <style scoped lang="less">
 .education-form {
   max-width: 400px;
-  background-color: white;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;

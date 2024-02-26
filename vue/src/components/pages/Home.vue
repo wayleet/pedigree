@@ -3,13 +3,14 @@
     <section class="p-16">
       Homepage
       <button @click="() => openHelpModal()">Open modal</button>
+      <ElButton type="primary">Кнопка</ElButton>
       <PersonCard :person="person" />
+      <PhotoPreview size="large" photo="https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666206241_12-mykaleidoscope-ru-p-kartinka-na-zastavku-oboi-12.jpg" />
+      <EducationForm :education="education" />
+      <WeddingForm :wedding="wedding" />
+      <PersonForm :person="person" />
+      <MilitaryForm :military="military"/>
     </section>
-    <PhotoPreview size="large" photo="https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666206241_12-mykaleidoscope-ru-p-kartinka-na-zastavku-oboi-12.jpg" />
-    <EducationForm :education="education" />
-    <WeddingForm :wedding="wedding" />
-    <PersonForm :person="person" />
-    <MilitaryForm :military="military"/>
   </PageLayout>
 </template>
 
@@ -78,6 +79,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-</style>
