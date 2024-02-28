@@ -2,7 +2,7 @@
   <PageLayout>
     <section class="p-16">
       <h1>
-         Settings
+         Настройки
       </h1>
       <div>
         <ElSwitch
@@ -10,7 +10,7 @@
           activeColor="green"
           inactiveColor="grey"
         />
-        Скрытый режим       
+        Скрытый режим
       </div>
     </section>
   </PageLayout>
@@ -39,6 +39,6 @@ export default {
   }
 }
 </script>
-  
+
 <style>
 </style>
