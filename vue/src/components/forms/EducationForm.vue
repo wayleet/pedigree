@@ -1,49 +1,57 @@
 <template>
   <div class="education-form">
-    <input
+    <ElInput
       v-model="formData.type"
       class="education-form__input"
       type="text"
       placeholder="Тип"
-    >
-    <input
+    />
+    <ElInput
       v-model="formData.level"
       class="education-form__input"
       type="text"
       placeholder="Уровень"
-    >
-    <input
+    />
+    <ElInput
       v-model="formData.startDate"
       class="education-form__input"
       type="text"
       placeholder="Дата начала обучения"
-    >
-    <input
+    />
+    <ElInput
       v-model="formData.endDate"
       class="education-form__input"
       type="text"
       placeholder="Дата завершения обучения"
-    >
-    <input
+    />
+    <ElInput
       v-model="formData.institutionName"
       class="education-form__input"
       type="text"
       placeholder="Название учреждения"
-    >
-    <input
+    />
+    <ElInput
       v-model="formData.institutionCity"
       class="education-form__input"
       type="text"
       placeholder="Город учреждения"
-    >
+    />
   </div>
 </template>
 
 <script>
 export default {
   name: 'EducationForm',
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
   props: {
     education: {
+      type: Object,
+      required: true
+    },
+    value: {
       type: Object,
       required: true
     }
@@ -60,12 +68,62 @@ export default {
       }
     }
   },
-  mounted () {
-    this.formData = { ...this.education }
+  computed: {
+    type: {
+      get() {
+        return this.value.type
+      },
+      set(value) {
+        this.emitChange({ type: value })
+      }
+    },
+    level: {
+      get() {
+        return this.value.level
+      },
+      set(value) {
+        this.emitChange({ level: value })
+      }
+    },
+    startDate: {
+      get() {
+        return this.value.startDate
+      },
+      set(value) {
+        this.emitChange({ startDate: value })
+      }
+    },
+    endDate: {
+      get() {
+        return this.value.endDate
+      },
+      set(value) {
+        this.emitChange({ endDate: value })
+      }
+    },
+    institutionName: {
+      get() {
+        return this.value.institutionName
+      },
+      set(value) {
+        this.emitChange({ institutionName: value })
+      }
+    },
+    institutionCity: {
+      get() {
+        return this.value.institutionCity
+      },
+      set(value) {
+        this.emitChange({ institutionCity: value })
+      }
+    }
   },
   methods: {
-    submitForm () {
-      this.$emit('submit', this.formData)
+    emitChange(param) {
+      this.$emit('change', {
+        ...this.value,
+        ...param
+      })
     }
   }
 }
@@ -80,11 +138,9 @@ export default {
   padding: 10px;
 
   &__input {
-    padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
     border-color: rgba(0,0,0,0.6);
-    background-color: rgba(0,0,0,0.04);
   }
 }
 </style>
