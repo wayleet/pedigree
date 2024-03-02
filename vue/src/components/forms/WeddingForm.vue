@@ -5,13 +5,14 @@
       class="custom-form__full-width"
       type="textarea"
       placeholder="Выберите партнёра"
-    />
-    <ElOption
-      v-for="person in persons"
-      :key="person.id"
-      :label="person.name"
-      :value="person.id"
-    />
+    >
+      <ElOption
+        v-for="person in persons"
+        :key="person.id"
+        :label="person.name"
+        :value="person.id"
+      />
+    </ElSelect>
     <ElDatePicker
       v-model="date_start"
       class="custom-form__input"

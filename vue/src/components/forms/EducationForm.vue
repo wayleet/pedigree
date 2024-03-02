@@ -2,19 +2,19 @@
   <div class="custom-form">
     <ElInput
       v-model="type"
-      class="custom-input__input"
+      class="custom-form__input"
       type="text"
       placeholder="Тип"
     />
     <ElInput
       v-model="level"
-      class="custom-input__input"
+      class="custom-form__input"
       type="text"
       placeholder="Уровень"
     />
     <ElDatePicker
       v-model="startDate"
-      class="custom-input__input"
+      class="custom-form__input"
       type="date"
       format="dd.MM.yyyy"
       value-format="dd.MM.yyyy"
@@ -22,7 +22,7 @@
     />
     <ElDatePicker
       v-model="endDate"
-      class="custom-input__input"
+      class="custom-form__input"
       type="date"
       format="dd.MM.yyyy"
       value-format="dd.MM.yyyy"
@@ -30,13 +30,13 @@
     />
     <ElInput
       v-model="institutionName"
-      class="custom-input__input"
+      class="custom-form__input"
       type="text"
       placeholder="Название учреждения"
     />
     <ElInput
       v-model="institutionCity"
-      class="custom-input__input"
+      class="custom-form__input"
       type="text"
       placeholder="Город учреждения"
     />

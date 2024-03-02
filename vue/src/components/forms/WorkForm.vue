@@ -2,11 +2,13 @@
   <div class="custom-form">
     <ElInput
       v-model="place"
+      class="custom-form__input"
       type="text"
       placeholder="Страна, город"
     />
     <ElInput
       v-model="organization"
+      class="custom-form__input"
       type="text"
       placeholder="Организация"
     />
@@ -30,7 +32,7 @@
       <ElInput
         v-model="position"
         class="custom-form__input"
-        type="textarea"
+        type="text"
         placeholder="Должность"
       />
      </div>
@@ -41,8 +43,8 @@
         type="textarea"
         placeholder="Описание"
       />
-    </div> 
-  </div>  
+    </div>
+  </div>
 </template>
 
 <script>
