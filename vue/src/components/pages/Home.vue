@@ -10,6 +10,19 @@
       <WeddingForm v-model="wedding" :persons="persons" />
       <PersonForm :person="person" />
       <MilitaryForm :military="military"/>
+      <PopOver>
+        <template v-slot:button>
+          <div>Отчество: Фамилия И. О.</div>
+        </template>
+        <template v-slot:popover>
+          <div>Фамилия Имя Отчество</div>
+          <div>01.01.1920 - 01.01.2020</div>
+          <div>id: 100</div>
+        </template>
+      </PopOver>
+    </section>
+    <section class="home-page__section">
+      <button @click="openHelpModal" class="home-page__button">Open modal</button>
       <WorkForm v-model="workData"/>
     </section>
   </PageLayout>
@@ -17,19 +30,20 @@
 
 <script>
 import PageLayout from '../parts/PageLayout'
-import { helpModal } from "@/mixins/modals"
+import { helpModal } from "@/mixins/modals" 
 import PersonCard from '@/components/cards/PersonCard.vue'
 import PhotoPreview from '../ui/PhotoPreview.vue'
 import EducationForm from '../forms/EducationForm.vue'
 import WeddingForm from '../forms/WeddingForm.vue'
 import PersonForm from '../forms/PersonForm.vue'
 import MilitaryForm from '../forms/MilitaryForm.vue'
+import PopOver from "@/components/ui/PopOver"
 import { mapGetters } from 'vuex'
 import WorkForm from '../forms/WorkForm.vue'
 
 export default {
-  name: 'HomePage',
   mixins: [helpModal],
+  name: 'HomePage',
   components: {
     PageLayout,
     PhotoPreview,
@@ -38,6 +52,7 @@ export default {
     WeddingForm,
     PersonForm,
     MilitaryForm,
+    PopOver,
     WorkForm
   },
   computed: {
