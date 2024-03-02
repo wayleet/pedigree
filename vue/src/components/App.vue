@@ -70,4 +70,26 @@ h4 {
 .d-flex {
   display: flex;
 }
+
+.custom-form {
+  width: 450px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 15px;
+  padding: 8px;
+
+  &__full-width {
+    grid-column: span 2
+  }
+
+  &__input {
+    & .el-input__inner {
+      font-size: 16px;
+    }
+
+    & .el-textarea__inner {
+      font-size: 16px;
+    }
+  }
+}
 </style>
