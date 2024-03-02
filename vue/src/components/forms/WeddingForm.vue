@@ -1,12 +1,18 @@
 <template>
   <form class="wedding-form">
     <div class="wedding-form__person">
-      <ElInput
+      <ElSelect
         v-model="partner"
         class="wedding-form__inp"
-        type="text"
-        placeholder="Партнёр"
-      />
+        placeholder="Выберите партнёра"
+      >
+        <ElOption
+          v-for="person in persons"
+          :key="person.id"
+          :label="person.name"
+          :value="person.id"
+        />
+      </ElSelect>
     </div>
     <div class="wedding-form__date-start">
       <ElInput
@@ -38,12 +44,16 @@ export default {
     value: {
       type: Object,
       required: true
+    },
+    persons: {
+      type: Array,
+      required: true
     }
   },
   computed: {
     partner: {
       get () {
-        return this.value.partner.name
+        return this.value.partner
       },
       set (value) {
         this.emitFormData({ partner: value })
@@ -64,7 +74,7 @@ export default {
       set (value) {
         this.emitFormData({ date_end: value })
       }
-    },
+    }
   },
   methods: {
     emitFormData (param) {
