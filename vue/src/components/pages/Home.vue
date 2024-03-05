@@ -3,6 +3,15 @@
     <section class="p-16">
       Homepage
       <button @click="() => openHelpModal()">Open modal</button>
+
+      <PopOver>
+        <div>Отчество: Фамилия И. О.</div>
+
+        <template slot="popover">
+          <div>Поповер</div>
+        </template>
+      </PopOver>
+
       <ElButton type="primary">Кнопка</ElButton>
       <PersonCard :person="person" />
       <PhotoPreview size="large" />
@@ -10,19 +19,6 @@
       <WeddingForm v-model="wedding" :persons="persons" />
       <PersonForm :person="person" />
       <MilitaryForm :military="military"/>
-      <PopOver>
-        <template v-slot:button>
-          <div>Отчество: Фамилия И. О.</div>
-        </template>
-        <template v-slot:popover>
-          <div>Фамилия Имя Отчество</div>
-          <div>01.01.1920 - 01.01.2020</div>
-          <div>id: 100</div>
-        </template>
-      </PopOver>
-    </section>
-    <section class="home-page__section">
-      <button @click="openHelpModal" class="home-page__button">Open modal</button>
       <WorkForm v-model="workData"/>
     </section>
   </PageLayout>
@@ -30,7 +26,7 @@
 
 <script>
 import PageLayout from '../parts/PageLayout'
-import { helpModal } from "@/mixins/modals" 
+import { helpModal } from "@/mixins/modals"
 import PersonCard from '@/components/cards/PersonCard.vue'
 import PhotoPreview from '../ui/PhotoPreview.vue'
 import EducationForm from '../forms/EducationForm.vue'
