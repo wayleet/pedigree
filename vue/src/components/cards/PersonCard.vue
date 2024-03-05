@@ -5,10 +5,14 @@
     <span v-if="person.die_date" class="person-card__dates"> - {{ person.die_date }}</span>
 
     <h2>Родители</h2>
-    <div class="person-card__information-text">-</div>
+    <div class="person-card__information-text">
+      <RelateButton :person="person" relate="parent" />
+    </div>
 
     <h2>Дети </h2>
-    <div class="person-card__information-text">-</div>
+    <div class="person-card__information-text">
+      <RelateButton :person="person" relate="child" />
+    </div>
 
     <h2>Род деятельности</h2>
     <div class="person-card__information-text">{{ person.activity }}</div>
@@ -17,15 +21,21 @@
     <div class="person-card__information-text">{{ person.biography }}</div>
 
     <WeddingsList :weddings="person.weddingsData" />
+
+    <WeddingsList :weddings="person.weddingsData" />
   </div>
 </template>
 
 <script>
 import WeddingsList from '../parts/WeddingsList.vue';
 
+import RelateButton from '@/components/ui/RelateButton.vue';
+
 export default {
+  name: 'PersonCard',
   components: {
-    WeddingsList
+    WeddingsList,
+    RelateButton
   },
   props: {
     person: {
