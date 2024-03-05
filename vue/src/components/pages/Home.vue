@@ -17,7 +17,7 @@
       <PhotoPreview size="large" />
       <EducationForm v-model="education" />
       <WeddingForm v-model="wedding" :persons="persons" />
-      <PersonForm :person="person" />
+      <PersonForm v-model="person" />
       <MilitaryForm :military="military"/>
       <WorkForm v-model="workData"/>
     </section>
@@ -49,7 +49,7 @@ export default {
     PersonForm,
     MilitaryForm,
     PopOver,
-    WorkForm
+    WorkForm,
   },
   computed: {
     ...mapGetters('persons', [
