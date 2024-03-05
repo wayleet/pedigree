@@ -73,23 +73,6 @@ export default {
       required: true
     }
   },
-  data () {
-    return {
-      formData: {
-        secondName: '',
-        firstName: '',
-        patronymic: '',
-        gender: '',
-        birth_date: '',
-        die_date: '',
-        activity: '',
-        biography: ''
-      }
-    }
-  },
-  mounted () {
-    this.formData = { ...this.person }
-  },
   computed: {
     secondName: {
       get () {

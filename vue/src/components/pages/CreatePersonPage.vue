@@ -4,11 +4,11 @@
     <button @click="() => createPerson()" class="person-page__btn">Сохранить</button>
   </PageLayout>
 </template>
-  
+
 <script>
+import { mapActions } from 'vuex'
 import PageLayout from '../parts/PageLayout.vue'
-import PersonForm from '../forms/PersonForm.vue';
-import { mapActions } from 'vuex';
+import PersonForm from '../forms/PersonForm.vue'
 
 export default {
   name: 'CreatePersonPage',
@@ -32,15 +32,17 @@ export default {
     }
   },
   methods: {
-    ...mapActions('persons', ['addPerson']),
+    ...mapActions('persons', [
+      'addPerson'
+    ]),
     createPerson () {
-      this.addPerson('persons', this.person)
+      this.addPerson(this.person)
     }
   }
 }
 </script>
 
-<style lang="less">
+<style scoped lang="less">
 .person-page {
   &__btn {
     justify-self: center;

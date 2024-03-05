@@ -1,14 +1,14 @@
 <template>
   <PageLayout>
-    <PersonForm v-model="person"/>
-    <button @click="() => editPerson()" class="person-page__btn">Сохранить</button>
+    <PersonForm v-model="form"/>
+    <button @click="() => editPersonHandler()" class="person-page__btn">Сохранить</button>
   </PageLayout>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import PageLayout from '../parts/PageLayout.vue'
-import PersonForm from '../forms/PersonForm.vue';
-import { mapActions, mapGetters } from 'vuex';
+import PersonForm from '../forms/PersonForm.vue'
 
 export default {
   name: 'EditPersonPage',
@@ -18,7 +18,7 @@ export default {
   },
   data () {
     return {
-      person: {
+      form: {
         id: '',
         secondName: '',
         firstName: '',
@@ -31,30 +31,36 @@ export default {
       }
     }
   },
-  mounted () {
-    this.person = {...this.getPersonById(this.id)}
-  },
   computed: {
+    ...mapGetters('persons', [
+      'getPersonById'
+    ]),
+    person () {
+      return this.getPersonById(this.id)
+    },
     id () {
       return this.$route.params.id
     }
   },
+  mounted () {
+    if (this.person) {
+      this.form = { ...this.person }
+    } else {
+      this.$router.push({ path: '/' })
+    }
+  },
   methods: {
-    ...mapActions('persons', ['editPerson']),
-    ...mapGetters('persons', ['getPersonById']),
-    editPerson () {
-      if (this.person.firstName == '' || this.person.firstName == undefined) {
-        this.$router.push({ path: '/' })
-      }
-      else {
-        return this.editPerson('persons', this.person)
-      }
+    ...mapActions('persons', [
+      'editPerson'
+    ]),
+    editPersonHandler () {
+      this.editPerson(this.form)
     }
   }
 }
 </script>
 
-<style lang="less">
+<style scoped lang="less">
 .person-page {
   &__btn {
     justify-self: center;
