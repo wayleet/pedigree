@@ -1,6 +1,5 @@
 <template>
   <div class="person-card">
-    
     <div>
       <PhotoPreview size="large" />
     </div>
@@ -25,7 +24,8 @@
       <h2>Биография</h2>
       <div class="person-card__information-text">{{ person.biography }}</div>
 
-      <WeddingsList :weddings="person.weddingsData" />
+      <h2>Брачные союзы</h2>
+      <WeddingsList :weddings="person.weddings" />
     </div>
   </div>
 </template>
@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     fullName () {
-      return `${this.person.secondName} ${this.person.firstName} ${this.person.patronymic}`;
+      return `${this.person.secondName} ${this.person.firstName} ${this.person.patronymicName}`;
     }
   }
 }

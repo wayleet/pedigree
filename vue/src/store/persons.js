@@ -1,7 +1,19 @@
 import { genHash } from "./modals"
 
 export const PERSONS = "persons"
-const initialState = []
+
+const initialState = [
+  {
+    id: '1',
+    secondName: 'Иванов',
+    firstName: 'Иван',
+    patronymicName: 'Иванович',
+    gender: 'male',
+
+    weddings: []
+  }
+]
+
 export default {
   namespaced: true,
   state: {

@@ -4,11 +4,9 @@
     :class="'relate-button__' + (isMale ? 'male' : 'female')"
   >
     <template v-if="relate === 'parent'">
-      {{ isMale ? 'Отец: ' : 'Мать: ' }}{{ formatName }}
+      {{ isMale ? 'Отец: ' : 'Мать: ' }}
     </template>
-    <template v-else>
-      {{ formatName }}
-    </template>
+    {{ formatName }}
   </button>
 </template>
 
@@ -28,10 +26,10 @@ export default {
   },
   computed: {
     isMale () {
-      return this.person.gender === 'male';
+      return this.person.gender === 'male'
     },
     formatName () {
-      return `${this.person.secondName} ${this.person.firstName[0]}. ${this.person.patronymic[0]}.`;
+      return `${this.person.secondName} ${this.person.firstName[0]}. ${this.person.patronymicName[0]}.`
     }
   }
 };
