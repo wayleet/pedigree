@@ -19,13 +19,23 @@
       </div>
 
       <h2>Род деятельности</h2>
-      <div class="person-card__information-text">{{ person.activity }}</div>
+      <div class="person-card__information-text">
+        {{ person.activity || 'Информации нет' }}
+      </div>
 
       <h2>Биография</h2>
-      <div class="person-card__information-text">{{ person.biography }}</div>
+      <div class="person-card__information-text">
+        {{ person.biography || 'Информации нет' }}
+      </div>
 
       <h2>Брачные союзы</h2>
-      <WeddingsList :weddings="person.weddings" />
+      <WeddingsList
+        v-if="person.weddings.length > 0"
+        :weddings="person.weddings"
+      />
+      <div v-else class="person-card__information-text">
+        Информации нет
+      </div>
     </div>
   </div>
 </template>

@@ -1,7 +1,9 @@
 <template>
   <PageLayout>
-    <PersonForm v-model="person"/>
-    <button @click="() => createPerson()" class="person-page__btn">Сохранить</button>
+    <section class="p-16">
+      <PersonForm v-model="person"/>
+      <button @click="() => createPerson()" class="person-page__btn">Сохранить</button>
+    </section>
   </PageLayout>
 </template>
 

@@ -1,6 +1,8 @@
 <template>
   <PageLayout>
-    <PersonCard :person="person" />
+    <section class="p-16">
+      <PersonCard :person="person" />
+    </section>
   </PageLayout>
 </template>
 
