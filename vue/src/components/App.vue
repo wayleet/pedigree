@@ -1,19 +1,16 @@
 <template>
   <div>
     <RouterView />
-    <NavigationPanel />
     <ModalContainer />
   </div>
 </template>
 
 <script>
 import ModalContainer from "@/components/parts/ModalContainer";
-import NavigationPanel from "@/components/ui/NavigationPanel.vue";
 
 export default {
   components: {
     ModalContainer,
-    NavigationPanel
   }
 }
 </script>
@@ -27,6 +24,7 @@ body {
   padding: 0;
   background-color: @cBaseTwo;
   font-family: @ffInter;
+  overflow-y: scroll;
 }
 
 a {
