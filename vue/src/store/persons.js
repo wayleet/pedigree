@@ -26,7 +26,7 @@ export default {
   },
   mutations: {
     addPerson: (state, payload) => {
-      state.persons.push({ id: genHash(), ...payload })
+      state.persons.push({ ...payload, id: genHash() })
       localStorage.setItem(PERSONS, JSON.stringify(state.persons))
     },
     deletePerson: (state, payload) => {
@@ -53,4 +53,3 @@ export default {
     }
   }
 }
- 
