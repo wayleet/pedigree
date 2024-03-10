@@ -1,7 +1,7 @@
 <template>
   <div class="person-card">
     <div>
-      <PhotoPreview size="large" />
+      <PhotoPreview size="large"/>
     </div>
     <div>
       <h1>{{ fullName }}</h1>
@@ -10,12 +10,12 @@
 
       <h2>Родители</h2>
       <div class="person-card__information-text">
-        <RelateButton :person="person" relate="parent" />
+        <RelateButton :person="person" relate="parent"/>
       </div>
 
       <h2>Дети </h2>
       <div class="person-card__information-text">
-        <RelateButton :person="person" relate="child" />
+        <RelateButton :person="person" relate="child"/>
       </div>
 
       <h2>Род деятельности</h2>
@@ -60,13 +60,13 @@ export default {
   },
   computed: {
     fullName () {
-      return `${this.person.secondName} ${this.person.firstName} ${this.person.patronymicName}`;
+      return `${ this.person.secondName } ${ this.person.firstName } ${ this.person.patronymicName }`
     }
   }
 }
 </script>
 
-<style scoped lang ="less">
+<style scoped lang="less">
 .person-card {
   display: flex;
   gap: 15px;
