@@ -9,7 +9,7 @@ const initialState = [
     firstName: 'Иван',
     patronymicName: 'Иванович',
     gender: 'male',
-
+    military: [],
     weddings: []
   }
 ]
@@ -53,3 +53,4 @@ export default {
     }
   }
 }
+ 
