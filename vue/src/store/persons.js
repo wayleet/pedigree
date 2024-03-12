@@ -1,7 +1,6 @@
-import { genHash } from "./modals"
+import { genHash } from "../store/services/common.js"
 
 export const PERSONS = "persons"
-
 const initialState = [
   {
     id: '1',
@@ -13,11 +12,10 @@ const initialState = [
     weddings: []
   }
 ]
-
 export default {
   namespaced: true,
   state: {
-    persons: JSON.parse(localStorage.getItem(PERSONS)) || initialState
+    persons: JSON.parse(localStorage.getItem(PERSONS)) || initialState,
   },
   getters: {
     getAllPersons: (state) => state,
@@ -34,10 +32,7 @@ export default {
       localStorage.setItem(PERSONS, JSON.stringify(state.persons))
     },
     editPerson: (state, payload) => {
-      console.log(payload)
-      console.log(state.persons.find((p) => (p.id === payload.id)))
       state.persons = state.persons.map((p) => (p.id === payload.id ? { ...p, ...payload } : p))
-      console.log(state.persons)
       localStorage.setItem(PERSONS, JSON.stringify(state.persons))
     }
   },
