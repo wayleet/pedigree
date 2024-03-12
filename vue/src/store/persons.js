@@ -1,6 +1,7 @@
-import { genHash } from "../store/services/common.js"
+import { genHash } from "@/services/common"
 
 export const PERSONS = "persons"
+
 const initialState = [
   {
     id: '1',
@@ -12,6 +13,7 @@ const initialState = [
     weddings: []
   }
 ]
+
 export default {
   namespaced: true,
   state: {

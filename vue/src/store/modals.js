@@ -1,4 +1,4 @@
-import { genHash } from "../store/services/common.js"
+import { genHash } from "@/services/common"
 
 export default {
   namespaced: true,
