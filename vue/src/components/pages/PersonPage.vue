@@ -1,8 +1,8 @@
 <template>
   <PageLayout>
     <SimpleButton class="person-page__btn"
-      :class="{ 'disabled': buttonDisabled }" 
-      :disabled="isButtonDisabled"
+      :class="{ 'disabled': buttonDisabled }"
+      :disabled="buttonDisabled"
       @click = "() => saveId()"
     >
       Сохранить
