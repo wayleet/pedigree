@@ -63,6 +63,10 @@ export default {
     setCenter(state, id) {
       state.center = id
       localStorage.setItem(CENTER, JSON.stringify(id))
+    },
+    setPersons(state, payload) {
+      state.persons = payload
+      localStorage.setItem(PERSONS, JSON.stringify(state.persons))
     }
   },
   actions: {
@@ -79,6 +83,9 @@ export default {
     },
     setCenter({ commit }, id) {
       commit("setCenter", id)
+    },
+    setPersons: ({ commit }, payload) => {
+      commit("setPersons", payload)
     }
   }
 }
