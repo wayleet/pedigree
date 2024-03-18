@@ -7,14 +7,14 @@
         placeholder="Поиск"
         clearable
       />
-      <div 
-        v-if="persons && persons.length > 0" 
+      <div
+        v-if="persons && persons.length > 0"
         class="person-container__wrapper"
       >
-        <RouterLink 
+        <RouterLink
           class="navigation-panel__link__wrapper"
           :to="{ name: 'PERSON', params: { id: person.id } }"
-          v-for="(person, id) in persons" 
+          v-for="(person, id) in persons"
           :key="id"
         >
           <WidePersonCard :person="person" />
@@ -52,16 +52,16 @@ export default {
       return ['id', 'firstName', 'secondName', 'patronymicName', 'birthDate']
     },
     persons () {
-      if(this.search.length >= 3) {
+      if (this.search.length >= 3) {
         return this.filteredPersons(this.searchFunc)
       }
-      return this.getAllPersons.persons
+      return this.getAllPersons
     },
   },
   methods: {
-    searchFunc(person) {
+    searchFunc (person) {
       return this.fields.some((field) => {
-        if(person[field]) {
+        if (person[field]) {
           return person[field].toString().toLowerCase().includes(this.search.toLowerCase())
         }
       })
