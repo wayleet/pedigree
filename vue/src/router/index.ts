@@ -6,6 +6,7 @@ import EditPersonPage from '../components/pages/EditPersonPage.vue'
 import CreatePersonPage from '../components/pages/CreatePersonPage.vue'
 import SettingsPage from '../components/pages/SettingsPage.vue'
 import PaginationPage from '../components/pages/PaginationPage.vue'
+import GamesPage from '@/components/pages/GamesPage.vue'
 import PersonList from '../components/pages/PersonList.vue'
 import { RouteNames } from './routes'
 
@@ -43,9 +44,13 @@ const routes = [
     component: PaginationPage
   },
   {
+    path: '/games',
+    name: RouteNames.GAMES,
+    component: GamesPage
+  },
+  {
     path: '/list',
     name: RouteNames.PERSON_LIST,
-    component: PersonList
   }
 ]
 
