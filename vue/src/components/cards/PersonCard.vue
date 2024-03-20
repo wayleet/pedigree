@@ -171,4 +171,14 @@ export default {
     color: black;
   }
 }
+
+@media (max-width: 720px) {
+  .person-card {
+    display: flex;
+    width: 100%;
+    gap: 15px;
+    flex-direction: column;
+    align-items: center;
+  }
+} 
 </style>
