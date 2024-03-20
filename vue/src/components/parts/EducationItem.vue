@@ -1,21 +1,29 @@
 <template>
-  <div class="card">
-    <div class="card-header">
-      <h2 class="institution">{{ education.name }}</h2>
-      <div class="dates">{{ formatDate(education.startDate) }} - {{ formatDate(education.endDate) }}</div>
+  <div class="education-card">
+    <div class="education-card__header">
+      <h2 class="education-card__institution">{{ education.name }}</h2>
+      <div class="education-card__dates">
+        {{ formatDate(education.startDate) }} - {{ education.endDate ? formatDate(education.endDate) : 'настоящее время' }}
+      </div>
     </div>
 
-    <div class="card-body">
-      <div class="detail"><strong>Тип:</strong> {{ education.type }}</div>
-      <div class="detail"><strong>Уровень образования:</strong> {{ education.level }}</div>
-      <div class="detail"><strong>Город:</strong> {{ education.city }}</div>
+    <div class="education-card__body">
+      <div class="education-card__detail">
+        <span class="education-card__detail-label">Тип:</span> {{ education.type }}
+      </div>
+      <div class="education-card__detail">
+        <span class="education-card__detail-label">Уровень образования:</span> {{ education.level }}
+      </div>
+      <div class="education-card__detail">
+        <span class="education-card__detail-label">Город:</span> {{ education.city }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'EducationItem',
+  name: 'EducationCard',
   props: {
     education: {
       type: Object,
@@ -34,47 +42,47 @@ export default {
 <style scoped lang="less">
 @base-color: #333;
 @light-color: #666;
-@background-color: #f5f5f5;
+@background-color: #fff;
 @font-family: 'Inter', sans-serif;
 
-.card {
+.education-card {
   display: flex;
   flex-direction: column;
-  border-radius: 24px;
+  border-radius: 8px;
   background-color: @background-color;
-  box-shadow: 1.5px 7px 5px 1.5px rgba(0, 0, 0, 0.1), -1.5px 7px 5px -1.5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   padding: 15px;
   font-family: @font-family;
 
-  .card-header {
+  &__header {
     margin-bottom: 15px;
-
-    .institution {
-      font-size: 24px;
-      font-weight: bold;
-      margin: 0;
-    }
-
-    .dates {
-      font-size: 14px;
-      color: @light-color;
-    }
   }
 
-  .card-body {
+  &__institution {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  &__dates {
+    font-size: 14px;
+    color: @light-color;
+  }
+
+  &__body {
     display: flex;
     flex-direction: column;
     gap: 10px;
+  }
 
-    .detail {
-      font-size: 16px;
-      color: @base-color;
+  &__detail {
+    font-size: 16px;
+    color: @base-color;
+  }
 
-      strong {
-        font-weight: 600;
-      }
-    }
+  &__detail-label {
+    font-weight: 600;
   }
 }
 </style>
