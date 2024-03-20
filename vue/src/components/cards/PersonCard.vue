@@ -10,12 +10,15 @@
 
       <h2 id="parents-section">Родители</h2>
       <div class="person-card__information-text">
-        <PopOver>
-          <RelateButton :person="person" relate="parent"/>
-          <template slot="popover">
-            <PersonPreviewCard :person="person" />
-          </template>
-        </PopOver>
+        <div v-if="parents && parents.length > 0">
+          <PopOver v-for="parent in parents" :key="parent.id">
+            <RelateButton :person="parent" relate="parent" />
+            <template slot="popover">
+              <PersonPreviewCard :person="parent" />
+            </template>
+          </PopOver>
+        </div>
+        <p v-else>Нет родителей</p>
       </div>
 
       <h2 id="childs-section">Дети</h2>
@@ -91,7 +94,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('persons',['getPersonsByIds']),
+    ...mapGetters('persons',['getPersonsByIds', 'filteredPersons']),
     ...mapGetters('settings', ['getAccess']),
     activity (){
       if (this.needHide){
@@ -148,6 +151,9 @@ export default {
         return this.person.photo
       }
       return defaultImage
+    },
+    parents (){
+      return this.filteredPersons(person => person.children && person.children.includes(this.person.id))
     }
   }
 }
