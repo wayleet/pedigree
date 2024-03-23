@@ -12,6 +12,15 @@
         />
         Скрытый режим
       </div>
+      <h2>
+        Роль
+      </h2>
+      <div>
+        <ElSelect v-model="currentRole" placeholder="Выберите роль">
+          <ElOption label="user" value="user" />
+          <ElOption label="admin" value="admin" />
+        </ElSelect>
+      </div>
       <div class="file-actions">
         <a
           :href="downloadRef"
@@ -22,11 +31,11 @@
           </ElButton>
         </a>
         <ElUpload
-            action="#"
-            :limit="1"
-            :show-file-list="false"
-            :auto-upload="false"
-            :on-change="(file) => setFile(file)"
+          action="#"
+          :limit="1"
+          :show-file-list="false"
+          :auto-upload="false"
+          :on-change="(file) => setFile(file)"
         >
           <ElButton type="primary">
             Импорт
@@ -63,18 +72,26 @@ export default {
       'getAllPersons'
     ]),
     accessSwitch: {
-      get() {
+      get () {
         return this.getAccess
       },
-      set(value) {
+      set (value) {
         this.setAccess(value)
       },
     },
+    currentRole: {
+      get () {
+        return this.getMode
+      },
+      set (value) {
+        this.setMode(value)
+      }
+    },
     jwtToken: {
-      get() {
+      get () {
         return this.getToken
       },
-      set(value) {
+      set (value) {
         this.setToken(value)
       },
     },
@@ -90,7 +107,7 @@ export default {
         }),
         access: this.getAccess,
         mode: this.getMode
-      }));
+      }))
     }
   },
   methods: {
@@ -103,7 +120,7 @@ export default {
       'setPersons'
     ]),
     setFile (file) {
-      const reader = new FileReader();
+      const reader = new FileReader()
       reader.onload = (e) => {
         try {
           const jsonData = JSON.parse(e.target.result);
