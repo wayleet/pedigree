@@ -32,6 +32,10 @@
             Импорт
           </ElButton>
         </ElUpload>
+        <ElInput
+          v-model="jwtToken"
+          placeholder="Введите токен"
+        />
       </div>
     </section>
   </PageLayout>
@@ -40,6 +44,9 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import PageLayout from '@/components/parts/PageLayout.vue'
+import CryptoJS from 'crypto-js';
+import { decryptPersons } from '@/utils/decrypt'
+
 
 export default {
   name: 'SettingsPage',
@@ -49,7 +56,8 @@ export default {
   computed: {
     ...mapGetters('settings', [
       'getAccess',
-      'getMode'
+      'getMode',
+      'getToken'
     ]),
     ...mapGetters('persons', [
       'getAllPersons'
@@ -62,9 +70,24 @@ export default {
         this.setAccess(value)
       },
     },
+    jwtToken: {
+      get() {
+        return this.getToken
+      },
+      set(value) {
+        this.setToken(value)
+      },
+    },
     downloadRef () {
       return "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({
-        persons: this.getAllPersons,
+        persons: this.getAllPersons.map(person => {
+          if (this.getAccess && person.access && this.jwtToken) {
+            const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(person), this.jwtToken).toString();
+            return { data: encryptedData };
+          } else {
+            return person;
+          }
+        }),
         access: this.getAccess,
         mode: this.getMode
       }));
@@ -73,7 +96,8 @@ export default {
   methods: {
     ...mapActions('settings', [
       'setAccess',
-      'setMode'
+      'setMode',
+      'setToken'
     ]),
     ...mapActions('persons', [
       'setPersons'
@@ -81,13 +105,20 @@ export default {
     setFile (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        const { persons, access, mode } = JSON.parse(e.target.result)
-        this.setPersons(persons)
-        this.setAccess(access)
-        this.setMode(mode)
-      }
-      reader.readAsText(file.raw)
-    }
+        try {
+          const jsonData = JSON.parse(e.target.result);
+          if (jsonData.persons) {
+            this.setPersons(decryptPersons(jsonData.persons, this.jwtToken))
+          }
+          this.setAccess(jsonData.access);
+          this.setMode(jsonData.mode);
+        }
+        catch (e){
+          console.log(e)
+        }
+      };
+      reader.readAsText(file.raw);
+    },
   }
 }
 </script>
