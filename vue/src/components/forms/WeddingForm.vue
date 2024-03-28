@@ -20,6 +20,7 @@
       format="dd.MM.yyyy"
       value-format="dd.MM.yyyy"
       placeholder="Дата свадьбы"
+      :picker-options="startPickerOptions"
     />
     <ElDatePicker
       v-model="endDate"
@@ -28,63 +29,85 @@
       format="dd.MM.yyyy"
       value-format="dd.MM.yyyy"
       placeholder="Дата развода"
+      :picker-options="endPickerOptions"
     />
   </div>
 </template>
 
 <script>
+import { formatDateStringToISODate } from "@/services/formatDateStringToISODate";
+
 export default {
-  name: 'WeddingForm',
+  name: "WeddingForm",
   model: {
-    prop: 'value',
-    event: 'change'
+    prop: "value",
+    event: "change",
   },
   props: {
     value: {
       type: Object,
-      required: true
+      required: true,
     },
     persons: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     partnerId: {
-      get () {
-        return this.value.partnerId
+      get() {
+        return this.value.partnerId;
       },
-      set (value) {
-        this.emitFormData({ partnerId: value })
-      }
+      set(value) {
+        this.emitFormData({ partnerId: value });
+      },
     },
     startDate: {
-      get () {
-        return this.value.startDate
+      get() {
+        return this.value.startDate;
       },
-      set (value) {
-        this.emitFormData({ startDate: value })
-      }
+      set(value) {
+        this.emitFormData({ startDate: value });
+      },
     },
     endDate: {
-      get () {
-        return this.value.endDate
+      get() {
+        return this.value.endDate;
       },
-      set (value) {
-        this.emitFormData({ endDate: value })
-      }
-    }
+      set(value) {
+        this.emitFormData({ endDate: value });
+      },
+    },
+    startPickerOptions() {
+      return {
+        disabledDate: (time) => {
+          if (this.endDate) {
+            const endDate = formatDateStringToISODate(this.endDate);
+            return time.getTime() > endDate.getTime();
+          }
+        },
+      };
+    },
+    endPickerOptions() {
+      return {
+        disabledDate: (time) => {
+          if (this.startDate) {
+            const startDate = formatDateStringToISODate(this.startDate);
+            return time.getTime() < startDate.getTime();
+          }
+        },
+      };
+    },
   },
   methods: {
-    emitFormData (param) {
-      this.$emit('change', {
+    emitFormData(param) {
+      this.$emit("change", {
         ...this.value,
-        ...param
-      })
-    }
-  }
-}
+        ...param,
+      });
+    },
+  },
+};
 </script>
 
-<style>
-</style>
+<style></style>

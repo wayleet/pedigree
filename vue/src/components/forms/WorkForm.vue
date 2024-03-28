@@ -19,6 +19,7 @@
       format="dd.MM.yyyy"
       value-format="dd.MM.yyyy"
       placeholder="Дата начала"
+      :picker-options="startPickerOptions"
     />
     <ElDatePicker
       v-model="endDate"
@@ -27,6 +28,7 @@
       format="dd.MM.yyyy"
       value-format="dd.MM.yyyy"
       placeholder="Дата завершения"
+      :picker-options="endPickerOptions"
     />
     <div class="custom-form__full-width">
       <ElInput
@@ -35,8 +37,8 @@
         type="text"
         placeholder="Должность"
       />
-     </div>
-     <div class="custom-form__full-width">
+    </div>
+    <div class="custom-form__full-width">
       <ElInput
         v-model="description"
         class="custom-form__input"
@@ -48,78 +50,99 @@
 </template>
 
 <script>
+import { formatDateStringToISODate } from "@/services/formatDateStringToISODate";
+
 export default {
-  name: 'WorkForm',
+  name: "WorkForm",
   model: {
-    prop: 'value',
-    event: 'change'
+    prop: "value",
+    event: "change",
   },
   props: {
     value: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     place: {
       get() {
-        return this.value.place
+        return this.value.place;
       },
       set(value) {
-        this.emitChange({ place: value })
-      }
+        this.emitChange({ place: value });
+      },
     },
     organization: {
       get() {
-        return this.value.organization
+        return this.value.organization;
       },
       set(value) {
-        this.emitChange({ organization: value })
-      }
+        this.emitChange({ organization: value });
+      },
     },
     startDate: {
       get() {
-        return this.value.startDate
+        return this.value.startDate;
       },
       set(value) {
-        this.emitChange({ startDate: value })
-      }
+        this.emitChange({ startDate: value });
+      },
     },
     endDate: {
       get() {
-        return this.value.endDate
+        return this.value.endDate;
       },
       set(value) {
-        this.emitChange({ endDate: value })
-      }
+        this.emitChange({ endDate: value });
+      },
     },
     position: {
       get() {
-        return this.value.position
+        return this.value.position;
       },
       set(value) {
-        this.emitChange({ position: value })
-      }
+        this.emitChange({ position: value });
+      },
     },
     description: {
       get() {
-        return this.value.description
+        return this.value.description;
       },
       set(value) {
-        this.emitChange({ description: value })
-      }
-    }
+        this.emitChange({ description: value });
+      },
+    },
+    startPickerOptions() {
+      return {
+        disabledDate: (time) => {
+          if (this.endDate) {
+            const endDate = formatDateStringToISODate(this.endDate);
+            return time.getTime() > endDate.getTime();
+          }
+        },
+      };
+    },
+    endPickerOptions() {
+      return {
+        disabledDate: (time) => {
+          if (this.startDate) {
+            const startDate = formatDateStringToISODate(this.startDate);
+            return time.getTime() < startDate.getTime();
+          }
+        },
+      };
+    },
   },
   methods: {
-    emitChange (param) {
-      this.$emit('change', {
+    emitChange(param) {
+      this.$emit("change", {
         ...this.value,
-        ...param
-      })
-    }
-  }
-}
+        ...param,
+      });
+    },
+  },
+};
 </script>
 
-<style>
-</style>
+<style></style>
